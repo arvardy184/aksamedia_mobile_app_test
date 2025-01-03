@@ -1,6 +1,6 @@
-import 'package:aksamedia_mobile_app_test/app/theme/app_colors.dart';
-import 'package:aksamedia_mobile_app_test/app/theme/app_typography.dart';
+
 import 'package:aksamedia_mobile_app_test/features/onboarding/presentation/controller/onboarding_controller.dart';
+import 'package:aksamedia_mobile_app_test/features/product/presentation/screens/product_detail_screen.dart';
 import 'package:aksamedia_mobile_app_test/shared/atomic/atoms/onboarding_skip_button.dart';
 import 'package:aksamedia_mobile_app_test/shared/atomic/organisms/onboarding_footer.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +33,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 OnboardingSkipButton(onPressed: () {
                   // Navigasi ke halaman berikut
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductDetailScreen()));
                 }),
                 Positioned(
                   bottom: MediaQuery.of(context).size.height * 0.39,

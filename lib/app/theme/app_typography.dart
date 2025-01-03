@@ -43,7 +43,6 @@ class AppTypography {
   static const TextStyle bodyRegular = TextStyle(
     fontSize: 16,
     height: 16 / 16,
-    fontWeight: FontWeight.normal,
   );
 
   static const TextStyle bodyRegularTight = TextStyle(

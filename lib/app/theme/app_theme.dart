@@ -25,15 +25,15 @@ class AppTheme {
       bodyMedium: AppTypography.bodyRegularNormal,
       bodySmall: AppTypography.bodySmallNormal,
     ),
-     elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary[950], // Set warna tombol utama
-        foregroundColor: Colors.white, // Warna teks tombol
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
+elevatedButtonTheme: ElevatedButtonThemeData(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.black,
+    foregroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
     ),
+  ),
+),
     buttonTheme: ButtonThemeData(
       buttonColor: AppColors.primary[950], 
       textTheme: ButtonTextTheme.primary,
