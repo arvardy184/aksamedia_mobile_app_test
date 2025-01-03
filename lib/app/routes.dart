@@ -1,4 +1,5 @@
 import 'package:aksamedia_mobile_app_test/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:aksamedia_mobile_app_test/features/product/presentation/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -8,7 +9,7 @@ class AppRoutes {
   static Map<String, WidgetBuilder> getRoutes() {
     return {
       onboarding: (_) => const OnboardingScreen(),
-      // productDetail: (_) => const ProductDetailScreen(),
+      productDetail: (_) => const ProductDetailScreen()
     };
   }
 }

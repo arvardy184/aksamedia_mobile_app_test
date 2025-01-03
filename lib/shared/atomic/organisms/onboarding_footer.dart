@@ -12,8 +12,8 @@ class OnboardingFooter extends StatelessWidget {
     required this.description,
     required this.isLastPage,
     required this.onNext,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

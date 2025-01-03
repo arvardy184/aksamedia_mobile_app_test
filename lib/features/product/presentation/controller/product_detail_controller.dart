@@ -1,5 +1,7 @@
 import 'package:aksamedia_mobile_app_test/features/product/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ProductDetailController extends ChangeNotifier {
   // Image slider
@@ -14,14 +16,11 @@ class ProductDetailController extends ChangeNotifier {
   final double commission = 35600;
   final double commissionPercentage = 20;
   final int stock = 999;
+
   // Selection state
   String _selectedSize = 'Paket 1'; //nilai default nya
   Color? _selectedColor;
   bool _isDescriptionExpanded = false;
-
-
-  bool _isLoadingSimilarProducts = false;
-
 
   String? _errorMessage;
 
@@ -30,9 +29,8 @@ class ProductDetailController extends ChangeNotifier {
   String get selectedSize => _selectedSize;
   Color? get selectedColor => _selectedColor;
   bool get isDescriptionExpanded => _isDescriptionExpanded;
-  bool get isLoadingSimilarProducts => _isLoadingSimilarProducts;
-  String? get errorMessage => _errorMessage;
 
+  String? get errorMessage => _errorMessage;
 
   final List<String> images = [
     'assets/images/detail_img.png',
@@ -43,8 +41,8 @@ class ProductDetailController extends ChangeNotifier {
   final List<String> sizes = ['Paket 1', 'Paket 2'];
 
   final List<Color> colors = [
-    const Color(0xFFE4C19C), 
-    const Color(0xFF4A3728), 
+    const Color(0xFFE4C19C),
+    const Color(0xFF4A3728),
   ];
 
   final String description = '''*New Material*
@@ -194,7 +192,6 @@ Terbuat dari bahan 100% Katun Linen yang membuat nyaman jika digunakan.''',
     ),
   ];
 
-
   // 1) Image slider
   void onImageChanged(int index) {
     _currentImageIndex = index;
@@ -219,12 +216,7 @@ Terbuat dari bahan 100% Katun Linen yang membuat nyaman jika digunakan.''',
     notifyListeners();
   }
 
-  // 5) Share product:
-  void shareProduct() {
-  
-  }
-
-  // 6) Add to store
+  // 5) Add to store
   void addToStore() {
     if (_selectedColor == null) {
       _errorMessage = 'Pilih warna terlebih dahulu';
@@ -232,10 +224,10 @@ Terbuat dari bahan 100% Katun Linen yang membuat nyaman jika digunakan.''',
       return;
     }
 
-    print('Menambahkan $title ke store dengan warna $_selectedColor');
+    debugPrint('Menambahkan $title ke store dengan warna $_selectedColor');
   }
 
-  // 7) Add to cart
+  // 6) Add to cart
   void addToCart() {
     if (_selectedColor == null) {
       _errorMessage = 'Pilih warna terlebih dahulu';
@@ -243,14 +235,81 @@ Terbuat dari bahan 100% Katun Linen yang membuat nyaman jika digunakan.''',
       return;
     }
 
-    print('Menambahkan $title ke keranjang dengan warna $_selectedColor');
+    debugPrint('Menambahkan $title ke keranjang dengan warna $_selectedColor');
   }
 
-  // 8) Format price
+  // 7) Format price
   String formatPrice(double price) {
     final raw = price.toStringAsFixed(0);
     final regex = RegExp(r'(\d)(?=(\d{3})+$)');
     return raw.replaceAllMapped(regex, (m) => '${m[1]}.');
+  }
+
+  // 8) copy to clipboard
+  Future<void> copyToClipboard(String text) async {
+    try {
+      await Clipboard.setData(ClipboardData(text: text));
+      _errorMessage = 'Teks berhasil disalin';
+      notifyListeners();
+    } catch (e) {
+      _errorMessage = 'Gagal menyalin teks';
+      notifyListeners();
+    }
+
+    Future.delayed(const Duration(seconds: 2), () {
+      _errorMessage = null;
+      notifyListeners();
+    });
+  }
+
+  void copyProductDetails() {
+    final formattedCustomerPrice = formatPrice(customerPrice);
+    final formattedResellerPrice = formatPrice(resellerPrice);
+
+    final textToCopy = '''
+$title
+Harga Customer: Rp$formattedCustomerPrice
+Harga Reseller: Rp$formattedResellerPrice
+Komisi: ${commissionPercentage.toStringAsFixed(0)}%
+Stok: $stock pcs
+
+$description
+''';
+
+    copyToClipboard(textToCopy);
+  }
+
+  //10) share product
+  void shareProduct() async {
+    final formattedCustomerPrice = formatPrice(customerPrice);
+    final formattedResellerPrice = formatPrice(resellerPrice);
+
+    final textToShare = '''
+$title
+Harga Customer: Rp$formattedCustomerPrice
+Harga Reseller: Rp$formattedResellerPrice
+Komisi: ${commissionPercentage.toStringAsFixed(0)}%
+Stok: $stock pcs
+
+$description
+''';
+
+    try {
+      await Share.share(
+        textToShare,
+        subject: title,
+      );
+     
+    } catch (e) {
+      _errorMessage = 'Gagal membagikan produk';
+      notifyListeners();
+
+      // Clear error after 2 seconds
+      Future.delayed(const Duration(seconds: 2), () {
+        _errorMessage = null;
+        notifyListeners();
+      });
+    }
   }
 
   @override

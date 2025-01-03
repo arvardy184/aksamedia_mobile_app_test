@@ -1,4 +1,5 @@
 // main.dart
+import 'package:aksamedia_mobile_app_test/app/routes.dart';
 import 'package:aksamedia_mobile_app_test/app/theme/app_theme.dart';
 import 'package:aksamedia_mobile_app_test/features/onboarding/presentation/controller/onboarding_controller.dart';
 import 'package:aksamedia_mobile_app_test/features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Your App',
       theme: AppTheme.lightTheme,
+      routes: AppRoutes.getRoutes(),
       home: const OnboardingScreen(),
       debugShowCheckedModeBanner: false,
     );

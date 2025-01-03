@@ -6,11 +6,11 @@ class ColorSelector extends StatelessWidget {
   final ValueChanged<Color> onColorSelected;
 
   const ColorSelector({
-    Key? key,
+    super.key,
     required this.colors,
     required this.selectedColor,
     required this.onColorSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

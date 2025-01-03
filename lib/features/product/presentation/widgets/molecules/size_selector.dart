@@ -6,11 +6,11 @@ class PackageSelector extends StatelessWidget {
   final ValueChanged<String> onPackageSelected;
 
   const PackageSelector({
-    Key? key,
+    super.key,
     required this.packages,
     required this.selectedPackage,
     required this.onPackageSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LineSeparator extends StatelessWidget {
-  const LineSeparator({Key? key}) : super(key: key);
+  const LineSeparator({super.key});
 
   @override
   Widget build(BuildContext context) {

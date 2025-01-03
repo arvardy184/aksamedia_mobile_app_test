@@ -6,9 +6,9 @@ class StockInfo extends StatelessWidget {
   final int stock;
 
   const StockInfo({
-    Key? key,
+    super.key,
     required this.stock,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

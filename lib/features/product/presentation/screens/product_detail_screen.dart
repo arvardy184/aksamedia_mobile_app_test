@@ -1,6 +1,7 @@
 import 'package:aksamedia_mobile_app_test/features/product/presentation/controller/product_detail_controller.dart';
 import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/bottom_sheets/share_bottom_sheet.dart';
-import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/organisms/product_image_slider.dart';
+import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/bottom_sheets/show_bottom_sheet.dart';
+import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/molecules/product_action_buttons.dart';
 import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/organisms/product_info.dart';
 import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/organisms/product_recommendations_section.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class ProductDetailScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.ios_share_outlined, color: Colors.white),
-            onPressed: () => _showShareBottomSheet(context, controller),
+            onPressed: () => showCustomBottomSheet(context: context),
           ),
           IconButton(
             icon: const Icon(Icons.shopping_cart_outlined, color: Colors.white),
@@ -107,11 +108,11 @@ class ProductDetailScreen extends StatelessWidget {
           ),
 
           // Bottom Action Buttons
-          Positioned(
+          const Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: _buildBottomActions(context, controller),
+            child:  ProductActionButtons()
           ),
         ],
       ),
@@ -119,76 +120,19 @@ class ProductDetailScreen extends StatelessWidget {
   }
 }
 
-Widget _buildBottomActions(
-  BuildContext context,
-  ProductDetailController controller,
-) {
-  return Container(
-    color: Colors.white,
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-    height: 60,
-    child: Row(
-      children: [
-        Expanded(
-          flex: 2,
-          child: OutlinedButton(
-            onPressed: () {
-              controller.addToStore();
-              if (controller.errorMessage != null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(controller.errorMessage!)),
-                );
-              }
-            },
-            style: OutlinedButton.styleFrom(
-              side: const BorderSide(color: Colors.black),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-            child: const Text(
-              'Tambahkan ke toko',
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          flex: 1,
-          child: ElevatedButton(
-            onPressed: () {
-              controller.addToCart();
-              if (controller.errorMessage != null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(controller.errorMessage!)),
-                );
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: EdgeInsets.zero,
-            ),
-            child: const Icon(Icons.shopping_cart),
-          ),
-        ),
-      ],
-    ),
-  );
-}
 
-void _showShareBottomSheet(
-  BuildContext context,
-  ProductDetailController controller,
-) {
-  showModalBottomSheet(
-    context: context,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(
-        top: Radius.circular(20),
-      ),
-    ),
-    builder: (_) => const ProductBottomSheetShare(),
-  );
-}
+
+// void _showShareBottomSheet(
+//   BuildContext context,
+//   ProductDetailController controller,
+// ) {
+//   showModalBottomSheet(
+//     context: context,
+//     shape: const RoundedRectangleBorder(
+//       borderRadius: BorderRadius.vertical(
+//         top: Radius.circular(20),
+//       ),
+//     ),
+//     builder: (_) => const ProductBottomSheetShare(),
+//   );
+// }

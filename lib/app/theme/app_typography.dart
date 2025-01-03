@@ -4,7 +4,7 @@ class AppTypography {
   // Title Styles
   static const TextStyle title1 = TextStyle(
     fontSize: 48,
-    height: 56 / 48, // Line Height / Font Size
+    height: 56 / 48, 
     fontWeight: FontWeight.bold,
   );
 

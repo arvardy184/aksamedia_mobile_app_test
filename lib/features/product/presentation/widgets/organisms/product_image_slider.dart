@@ -1,18 +1,16 @@
 import 'package:aksamedia_mobile_app_test/features/product/presentation/controller/product_detail_controller.dart';
 import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/organisms/product_info.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-// features/product/presentation/widgets/organisms/product_image_slider.dart
 
 class ProductImagesSlider extends StatelessWidget {
   final List<String> images;
 
   const ProductImagesSlider({
-    Key? key,
+    super.key,
     required this.images,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +68,8 @@ class ProductImagesSlider extends StatelessWidget {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
+                child: const SingleChildScrollView(
+                  padding: EdgeInsets.all(24),
                   child: ProductDetailInfo(), 
                 ),
               ),

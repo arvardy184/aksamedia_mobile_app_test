@@ -1,18 +1,17 @@
 import 'package:aksamedia_mobile_app_test/app/theme/app_colors.dart';
 import 'package:aksamedia_mobile_app_test/app/theme/app_typography.dart';
-import 'package:aksamedia_mobile_app_test/features/product/presentation/controller/product_detail_controller.dart';
+import 'package:aksamedia_mobile_app_test/shared/utils/formatters.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class PriceInfo extends StatelessWidget {
   final double priceCustomer;
   final double priceReseller;
 
   const PriceInfo({
-    Key? key,
+    super.key,
     required this.priceCustomer,
     required this.priceReseller,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +24,12 @@ class PriceInfo extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text('Rp ${priceCustomer.toStringAsFixed(0)}',
-                    style: AppTypography.bodyRegularNormal
-                        .copyWith(fontWeight: FontWeight.bold)),
+            
+                Text(
+                 'Rp ${priceCustomer.toRupiah()}',
+                       style: AppTypography.bodyRegularNormal
+                      .copyWith(fontWeight: FontWeight.bold)
+                ),
                 const Text('Harga Customer'),
               ],
             ),
@@ -35,7 +37,7 @@ class PriceInfo extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Rp ${priceReseller.toStringAsFixed(0)}',
+                  'Rp ${priceReseller.toRupiah()}',
                   style: AppTypography.bodyRegularNormal
                       .copyWith(fontWeight: FontWeight.bold),
                 ),

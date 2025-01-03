@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NewLabel extends StatelessWidget {
-  const NewLabel({Key? key}) : super(key: key);
+  const NewLabel({super.key});
 
   @override
   Widget build(BuildContext context) {

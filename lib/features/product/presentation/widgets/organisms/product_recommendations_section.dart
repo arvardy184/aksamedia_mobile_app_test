@@ -1,6 +1,7 @@
 import 'package:aksamedia_mobile_app_test/app/theme/app_colors.dart';
 import 'package:aksamedia_mobile_app_test/app/theme/app_typography.dart';
 import 'package:aksamedia_mobile_app_test/features/product/models/product_model.dart';
+import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/bottom_sheets/show_bottom_sheet.dart';
 import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/molecules/product_car_item.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +63,7 @@ class ProductRecommendationsSection extends StatelessWidget {
                     isNew: item.isNew,
                     commissionPercent: item.commisionPercentage ?? 0,
                     onShare: (){
-                      
+                      showCustomBottomSheet(context: context,);
                     },
                   ),
                 );

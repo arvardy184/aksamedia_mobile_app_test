@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class OnboardingSkipButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const OnboardingSkipButton({required this.onPressed, Key? key}) : super(key: key);
+  const OnboardingSkipButton({required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {

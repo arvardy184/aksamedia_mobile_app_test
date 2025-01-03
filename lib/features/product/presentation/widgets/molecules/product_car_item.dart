@@ -1,5 +1,6 @@
 import 'package:aksamedia_mobile_app_test/app/theme/app_colors.dart';
 import 'package:aksamedia_mobile_app_test/app/theme/app_typography.dart';
+import 'package:aksamedia_mobile_app_test/features/product/presentation/widgets/atoms/flag_shape.dart';
 import 'package:flutter/material.dart';
 
 class ProductCardItem extends StatelessWidget {
@@ -13,7 +14,7 @@ class ProductCardItem extends StatelessWidget {
   final VoidCallback? onTap;
 
   const ProductCardItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.imageUrl,
     required this.price,
@@ -22,7 +23,7 @@ class ProductCardItem extends StatelessWidget {
     this.commissionPercent = 0,
     this.onShare,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,29 +50,30 @@ class ProductCardItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                if (isNew)
-                  Positioned(
-                    top: 0,
-                    right: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'New',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
+             if (isNew)
+  Positioned(
+    top: 0,
+    right: 8,
+    child: Container(
+      decoration: const ShapeDecoration(
+
+        color: Colors.yellow,
+        shape: FlagShape(),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 4,
+      ),
+      child: const Text(
+        'New',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    ),
+  ),
                 Positioned(
                   bottom: 12,
                   left: 12,
@@ -153,7 +155,8 @@ class ProductCardItem extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: onShare,
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(AppColors.primary[950]),
+                        backgroundColor:
+                            WidgetStateProperty.all(AppColors.primary[950]),
                         foregroundColor: WidgetStateProperty.all(Colors.white),
                         padding: WidgetStateProperty.all(
                             const EdgeInsets.symmetric(vertical: 12)),
